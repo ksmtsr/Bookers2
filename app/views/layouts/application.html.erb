@@ -34,9 +34,11 @@
                   <a class="nav-link text-light" href="">
                   <li><i class="fa-solid fa-book-open"></i> Books</li>
                   </a>
-                  <a class="nav-link text-light">
-                <li><i class="fa-solid fa-right-from-bracket"></i><%= link_to " Log out",destroy_user_session_path, method: :delete %></li>
-                </a>
+                  <li><%= link_to destroy_user_session_path, method: :delete do %>
+                  <a class="nav-link text-light" data-method="delete" href="/users/sign_out">
+                  <i class="fa-solid fa-right-from-bracket"></i>Log out</li></a>
+                    <% end %>
+
 
                 <% else %>
 
