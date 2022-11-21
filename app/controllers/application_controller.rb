@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
    #ログインが済んでいなければログイン画面へリダイレクトする
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top,:about]
   #before_actionアクションを実行する前に実行するメソッドを指定する。
   before_action :configure_permitted_parameters, if: :devise_controller?
 
