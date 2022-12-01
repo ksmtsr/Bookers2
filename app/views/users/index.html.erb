@@ -1,8 +1,30 @@
 <p id="notice"></p>
 <div class="container px-5 px-sm-0">
-    <div class="row">
-        <div class="col-md-3">
-            <h2>User info</h2>
-        </div>
-    </div>
+  <%= render 'userinfo', user: @user, newbook: @newbook%>
+ <div class="col-md-9">
+ <div class="col-md-11 offset-md-1">
+  <h2>Users</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>image</th>
+        <th>name</th>
+        <th colspan="3"></th>
+        </thead>
+        <tbody>
+        <th><% @users.each do |user| %></th>
+        <tr>
+          <td>
+        <th><%= image_tag user.get_profile_image(100,100) %></th>
+        </td>
+        <td><%= @users.name %></td>
+        <td><%= link_to "Show", "/users/#{user.id}" %></td>
+        </tr>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
 </div>

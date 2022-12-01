@@ -11,57 +11,60 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
-
   <body>
    <header>
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
        <div class="container">
-         <a class="navbar-brand" href="/">
-           <span>Bookers</span>
+         <nav class="nav navbar-left">
+           <%= link_to "Bookers", root_path, class: "navbar-brand" %>
+           </nav>
+           <ul class="navbar-nav ml-auto">
            <% if user_signed_in? %>
-           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-NavDropdown" area-controls="navbar-NavbarDropdown" area-expandet="false"
-           area-label="Toggle-navigation">
-             <span class="navbar-toggler-icon"></span>
-           </button>
-           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-             <ul class="navbar-nav ml-auto">
-                <a class="nav-link text-light" href="/">
-                <li><i class="fa fa-home"></i> Home</li>
-                </a>
-                <a class="nav-link text-light" href=>
-                  <li><i class="fa-solid fa-users"></i> Users</li>
-                  </a>
-                  <a class="nav-link text-light" href="">
-                  <li><i class="fa-solid fa-book-open"></i> Books</li>
-                  </a>
-                  <li><%= link_to destroy_user_session_path, method: :delete do %>
-                  <a class="nav-link text-light" data-method="delete" href="/users/sign_out">
-                  <i class="fa-solid fa-right-from-bracket"></i>Log out</li></a>
-                    <% end %>
+              <li>
+                <%= link_to user_path(current_user), class: "nav-link text-light" do %> <!--ヘッダーHome-->
+                  <i class="fas fa-home"></i>Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to users_path, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-users"></i>Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to books_path, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-book-open"></i>Books
+                <% end %>
+              </li>
+              <li><%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>Log out
+                <% end %>
+              </li>
+            <% else %>
 
-
-                <% else %>
-
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-               <ul class="navbar-nav ml-auto">
-                <a class="nav-link text-light" href="/">
-                <li><i class="fa fa-home"></i> Home</li>
-                </a>
-                <a class="nav-link text-light" href="/home/about">
-                  <li><i class="fa-solid fa-link"></i> About</li>
-                  </a>
-                  <a class="nav-link text-light" href="/users/sign_up">
-                  <li><i class="fa-solid fa-user-plus"></i> Sign up</li>
-                  </a>
-                  <a class="nav-link text-light" href="/users/sign_in">
-                <li><i class="fa-solid fa-right-to-bracket"></i> Log in</li>
-                </a>
-               </ul>
-                </li>
-              </div>
+              <li>
+                <%= link_to root_path, class: "nav-link text-light" do %>
+                  <i class="fas fa-home"></i>Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to about_path, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-link"></i>About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-user-plus"></i>Sign up
+                <% end %>
+              </li>
+              <li>
+              <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                  <i class="fa-solid fa-right-to-bracket"></i>Log in
+                <% end %>
+              </li>
+            <% end %>
+              </ul>
             </div>
           </nav>
-          <% end %>
          </header>
          <%= yield %>
          </body>

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  # protect_from_forgery # CSRF対策
+  skip_before_action :verify_authenticity_token # トークンを無視
    #ログインが済んでいなければログイン画面へリダイレクトする
   before_action :authenticate_user!, except: [:top,:about]
   #before_actionアクションを実行する前に実行するメソッドを指定する。
@@ -6,12 +8,10 @@ class ApplicationController < ActionController::Base
 
 
 
-   def after_sign_up_path_for(resource)
-     books_path
-   end
+
 
    def after_sign_in_path_for(resource)
-     books_path
+     user_path(current_user)
    end
 
     def after_sign_out_path_for(resource)
